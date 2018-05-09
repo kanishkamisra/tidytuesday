@@ -2,7 +2,7 @@ library(tidyverse)
 library(geofacet)
 library(ggridges)
 
-opsions(scipen = 99)
+options(scipen = 99)
 
 census_2015 <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/acs2015_county_data.csv")
 
@@ -13,7 +13,7 @@ census_2015 %>%
   facet_geo(~State, grid = "us_state_grid4") +
   scale_fill_brewer(palette = "Spectral") +
   scale_color_brewer(palette = "Spectral") +
-  scale_x_continuous(labels = function(x) {str_c(as.character(x), "%")}) +
+  scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold", size = rel(1.8), family = "Merriweather"),
